@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta id="myViewport" name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, minimum-scale=0.7, target-densitydpi=device-dpi, user-scalable=no" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/main")
+</head>
+<body class="pageLogin">
+
+    <!--Header-->
+    <div class="header clearfix">
+        <div class="headerHolder">
+            <div class="col col1">
+                <div class="grid grid1">
+                    <a href="javascript:void(0);" class="logo"><img src="~/images/logo.png" border="0" title="Kale Kilit" /></a>
+                </div>
+            </div>
+            <div class="fixer"></div>
+        </div>
+    </div>
+    <!--Header-->
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/sitejs")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

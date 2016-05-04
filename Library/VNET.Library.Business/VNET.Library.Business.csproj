@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F042F9E9-8714-46B9-BDE9-7E4D5F8E5007}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VNET.Library.Business</RootNamespace>
+    <AssemblyName>VNET.Library.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArticleBusiness.cs" />
+    <Compile Include="BaseEntityBusiness.cs" />
+    <Compile Include="Interfaces\IArticleBusiness.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IPortalUserBusiness.cs" />
+    <Compile Include="Interfaces\IVideoBusiness.cs" />
+    <Compile Include="PortalUserBusiness.cs" />
+    <Compile Include="VideoBusiness.cs" />
+    <Compile Include="AttachmentBusiness.cs" />
+    <Compile Include="Interfaces\IAttachmentBusiness.cs" />
+    <Compile Include="Interfaces\ISearchHistoryBusiness.cs" />
+    <Compile Include="SearchHistoryBusiness.cs" />
+    <Compile Include="Interfaces\IBaseEntityBusiness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataLibrary\VNET.Library.DataLibrary.Interfaces\VNET.Library.DataLibrary.Interfaces.csproj">
+      <Project>{a8bd1bcd-84a0-4e83-acb4-8e2789c7c010}</Project>
+      <Name>VNET.Library.DataLibrary.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLibrary\VNET.Library.DataLibrary.SqlDataLayer\VNET.Library.DataLibrary.SqlDataLayer.csproj">
+      <Project>{d33d04bd-3575-45a8-937c-6e41d43c5156}</Project>
+      <Name>VNET.Library.DataLibrary.SqlDataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VNET.Library.Constants\VNET.Library.Constants.csproj">
+      <Project>{f3103fbd-5864-40aa-84da-f393d190ab40}</Project>
+      <Name>VNET.Library.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VNET.Library.Entities\VNET.Library.Entities.csproj">
+      <Project>{4902c4b5-8da0-43dd-b28c-4118d4bb963f}</Project>
+      <Name>VNET.Library.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VNET.Library.Utility\VNET.Library.Utility.csproj">
+      <Project>{5b897f80-3b0c-44c3-b2d7-e537e9a9e994}</Project>
+      <Name>VNET.Library.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

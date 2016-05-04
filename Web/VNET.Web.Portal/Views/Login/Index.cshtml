@@ -1,0 +1,76 @@
+﻿@using VNET.Library.Entities.CustomEntities
+@using VNET.Library.Entities.CrmEntities
+@model  VNET.Web.Portal.Models.SessionModel
+
+@{
+    ViewBag.Title = "LoginIndex";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+@using (Html.BeginForm("CheckLogin", "Login", FormMethod.Post))
+{
+    <div class="container">
+        <!--Body-->
+        <div class="body clearfix">
+            <div class="bodyHolder loginPage clearfix">
+                <!--Member Login-->
+                <div class="left">
+                    <div class="boxDefault boxMemberLogin">
+                        <div class="boxHolder">
+                            <div class="boxHeader boxHeaderMember">
+                                <h2 class="boxTitle">Kale Kilit Platformu</h2>
+                                <span class="boxBttmTitle">Kale Kilit Platformu Hesabı</span>
+                            </div>
+                            <div class="boxBody boxBodyMember">
+                                <div class="boxFields boxMemberFields">
+                                    <span class="name">Kullanıcı Adı</span> <span class="control">
+                                        @Html.TextBoxFor(m => m.UserName)
+                                    </span>
+                                </div>
+                                <div class="boxFields boxMemberFields">
+                                    <span class="name">Şifre</span> <span class="control">
+                                        @Html.PasswordFor(m => m.Password)
+                                    </span>
+                                </div>
+                                <div class="boxFooter boxMemberFooter">
+                                    <div class="boxBtnsCntrl boxMembrBtnsCntrl">
+                                        <button style="width:100%;" type="submit" class="btnDefault btnLogin"><span>GİRİŞ</span></button>
+                                    </div>
+                                    <div class="boxAccountCntrl boxMembrAccountCntrl">
+                                        <a href="#" class="btnDefault btnAccunt"><span>HESABIMA ERİŞEMİYORUM</span></a>
+                                    </div>
+                                    <div class="fixer"></div>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+                            {
+                                <div class="error"><span class="errorText">@Model.ErrorMessage</span></div>
+                            }                            
+
+                            <div class="loginInfo">
+                                <span class="infoText">Üyelik için <a href="mailto:uye@kaleanahtarcilarkulubu.com.tr" style="font-weight:bold;">uye@kaleanahtarcilarkulubu.com.tr</a> ile iletişime geçebilirsiniz.</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Member Login-->
+                <!--Member Login Banner-->
+                <div class="right">
+                    <div class="loginBnr">
+                        <span class="bnr"><img src="~/images/ANAHTARCILAR_KULUBU_lg.png" border="0" /></span>
+                        <div class="bnrText">
+                            <span class="smallText">1 SİLİNDİR 4 BÜYÜK SALDIRILARA KARŞI!</span>
+                            <span class="largeText">DÜNYADA İLK 80 dB ALARMLI SİLİNDİRLER</span>
+                        </div>
+                    </div>
+                </div>
+                <!--Member Login Banner-->
+                <div class="fixer">
+                </div>
+            </div>
+        </div>
+        <!--Body-->
+    </div>
+}
+

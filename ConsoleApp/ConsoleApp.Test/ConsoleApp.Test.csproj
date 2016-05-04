@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D6F18941-3DEC-4EC9-8E07-AF83446DBFAA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleApp.Test</RootNamespace>
+    <AssemblyName>ConsoleApp.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Library\Assemblies\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="regConfigTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\DataLibrary\VNET.Library.DataLibrary.ElasticDataLayer\VNET.Library.DataLibrary.ElasticDataLayer.csproj">
+      <Project>{db606794-55c0-47b5-a588-0cc748db1b5c}</Project>
+      <Name>VNET.Library.DataLibrary.ElasticDataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\DataLibrary\VNET.Library.DataLibrary.Interfaces\VNET.Library.DataLibrary.Interfaces.csproj">
+      <Project>{a8bd1bcd-84a0-4e83-acb4-8e2789c7c010}</Project>
+      <Name>VNET.Library.DataLibrary.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\DataLibrary\VNET.Library.DataLibrary.SqlDataLayer\VNET.Library.DataLibrary.SqlDataLayer.csproj">
+      <Project>{d33d04bd-3575-45a8-937c-6e41d43c5156}</Project>
+      <Name>VNET.Library.DataLibrary.SqlDataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\VNET.Library.Business\VNET.Library.Business.csproj">
+      <Project>{f042f9e9-8714-46b9-bde9-7e4d5f8e5007}</Project>
+      <Name>VNET.Library.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\VNET.Library.ConfigManager\VNET.Library.ConfigManager.csproj">
+      <Project>{9d67acc5-4072-4160-8285-da4594dde353}</Project>
+      <Name>VNET.Library.ConfigManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\VNET.Library.Constants\VNET.Library.Constants.csproj">
+      <Project>{f3103fbd-5864-40aa-84da-f393d190ab40}</Project>
+      <Name>VNET.Library.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\VNET.Library.Entities\VNET.Library.Entities.csproj">
+      <Project>{4902c4b5-8da0-43dd-b28c-4118d4bb963f}</Project>
+      <Name>VNET.Library.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\VNET.Library.IocManager\VNET.Library.IocManager.csproj">
+      <Project>{a9bef828-bbd7-4678-b1f5-98dec63712b0}</Project>
+      <Name>VNET.Library.IocManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\VNET.Library.LogManager\VNET.Library.LogManager.csproj">
+      <Project>{b39cb341-c3c8-4be6-b2b1-52c6f991e7d4}</Project>
+      <Name>VNET.Library.LogManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\VNET.Library.Utility\VNET.Library.Utility.csproj">
+      <Project>{5b897f80-3b0c-44c3-b2d7-e537e9a9e994}</Project>
+      <Name>VNET.Library.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
