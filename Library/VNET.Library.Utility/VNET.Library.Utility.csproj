@@ -39,8 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigWrapper.cs" />
     <Compile Include="FileLogHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VNET.Library.ConfigManager\VNET.Library.ConfigManager.csproj">
+      <Project>{9d67acc5-4072-4160-8285-da4594dde353}</Project>
+      <Name>VNET.Library.ConfigManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

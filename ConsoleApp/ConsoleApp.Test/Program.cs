@@ -11,6 +11,7 @@ using VNET.Library.DataLibrary.Interfaces;
 using VNET.Library.DataLibrary.SqlDataLayer;
 using VNET.Library.DataLibrary.SqlDataLayer.Interface;
 using VNET.Library.DataLibrary.SqlDataLayer.Interfaces;
+using VNET.Library.Utility;
 
 namespace ConsoleApp.Test
 {
@@ -18,6 +19,7 @@ namespace ConsoleApp.Test
     {
         static void Main(string[] args)
         {
+            string den = ConfigWrapper.Config.AdminId;
             IConfigManager _confManager = new RegConfigManager("sahibindenTest");
 
             ISqlAccess sqlAccess = new SqlAccess("Data Source=192.168.*.**; Initial Catalog=***; User Id=****; Password=****;Max Pool Size = 10000;Pooling = True");

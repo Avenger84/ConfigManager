@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace VNET.Library.Entities.Custom.Entities
 {
     public class DataCollection<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable
     {
         private IDictionary<TKey, TValue> _innerDictionary = new Dictionary<TKey, TValue>();
+        private ReaderWriterLockSlim cacheLock = new ReaderWriterLockSlim();
 
         public int Count
         {
@@ -30,19 +32,43 @@ namespace VNET.Library.Entities.Custom.Entities
 
         public void Add(TKey key, TValue value)
         {
-            _innerDictionary.Add(key, value);
+            cacheLock.EnterWriteLock();
+            try
+            {
+                _innerDictionary.Add(key, value);
+            }
+            finally
+            {
+                cacheLock.ExitWriteLock();
+            }
         }
 
         public void Add(KeyValuePair<TKey, TValue> keyValue)
         {
-            _innerDictionary.Add(keyValue);
+            cacheLock.EnterWriteLock();
+            try
+            {
+                _innerDictionary.Add(keyValue);
+            }
+            finally
+            {
+                cacheLock.ExitWriteLock();
+            }
         }
 
         public void AddRange(IEnumerable<KeyValuePair<TKey, TValue>> collection)
         {
-            foreach (var item in collection)
+            cacheLock.EnterWriteLock();
+            try
             {
-                _innerDictionary.Add(item);
+                foreach (var item in collection)
+                {
+                    _innerDictionary.Add(item);
+                }
+            }
+            finally
+            {
+                cacheLock.ExitWriteLock();
             }
         }
 
@@ -50,11 +76,27 @@ namespace VNET.Library.Entities.Custom.Entities
         {
             get
             {
-                return _innerDictionary[key];
+                cacheLock.EnterReadLock();
+                try
+                {
+                    return _innerDictionary[key];
+                }
+                finally
+                {
+                    cacheLock.ExitReadLock();
+                }
             }
             set
             {
-                _innerDictionary[key] = value;
+                cacheLock.EnterWriteLock();
+                try
+                {
+                    _innerDictionary[key] = value;
+                }
+                finally
+                {
+                    cacheLock.ExitWriteLock();
+                }
             }
         }
 
