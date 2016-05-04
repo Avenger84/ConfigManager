@@ -42,10 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigCacheManager.cs" />
-    <Compile Include="ConfigValues.cs" />
+    <Compile Include="ConfigManager.cs" />
     <Compile Include="Configs.cs" />
     <Compile Include="DBConfigManager.cs" />
+    <Compile Include="Interfaces\IConfigs.cs" />
     <Compile Include="RegConfigManager.cs" />
     <Compile Include="Interfaces\IConfigManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

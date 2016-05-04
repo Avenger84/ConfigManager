@@ -9,61 +9,39 @@ using VNET.Library.Entities.CrmEntities;
 
 namespace VNET.Library.ConfigManager
 {
-    public class DBConfigManager : IConfigManager
+    public class DBConfigManager : ConfigManager, IConfigManager
     {
         private IDBConfigDao _dbConfigDao;
         private string _configName;
-
-        private static ConfigCollection _configCollection;
 
         public DBConfigManager(IDBConfigDao dbConfigDao, string configName)
         {
             _dbConfigDao = dbConfigDao;
             _configName = configName;
 
-            ConfigCacheManager cacheManager = new ConfigCacheManager(this);
-
-            Task task = Task.Factory.StartNew(() => cacheManager.StartConfigCache());
+            Task task = Task.Factory.StartNew(() => base.StartConfigCache());
 
             task.Wait();
         }
 
         public string GetKeyValue(string key)
         {
-            if (_configCollection == null)
-            {
-                FillConfig();
-            }
-
-            return _configCollection[key];
+            return base.GetValue(key);
         }
-
 
         public string this[string key]
         {
             get
             {
-                if (_configCollection == null)
-                {
-                    FillConfig();
-                }
-
-                return _configCollection[key];
+                return base.GetValue(key);
             }
-            set { }
         }
 
-        private void FillConfig()
-        {
-            _configCollection = _dbConfigDao.GetConfigVaribales(_configName);
-        }
-
-
-        public void FillConfigValues()
+        public override void FillConfigValues()
         {
             ConfigCollection configCollection = _dbConfigDao.GetConfigVaribales(_configName);
 
-            ConfigValues.Instance.FillConfigValues(configCollection);
+            base.SetConfigValuesToCache(configCollection);
         }
     }
 }

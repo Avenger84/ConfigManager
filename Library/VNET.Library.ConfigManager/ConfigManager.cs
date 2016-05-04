@@ -4,20 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using VNET.Library.ConfigManager.Interfaces;
+using VNET.Library.Entities.CrmEntities;
 
 namespace VNET.Library.ConfigManager
 {
-    internal class ConfigCacheManager
+    public abstract class ConfigManager
     {
         private const int CACHE_INTERVAL = 10 * 1000;
         private System.Timers.Timer _timer;
 
-        private IConfigManager _configManager;
+        private static ConfigCollection _configCollection = new ConfigCollection();
 
-        public ConfigCacheManager(IConfigManager configManager)
+        public ConfigManager()
         {
-            _configManager = configManager;
-
             _timer = new System.Timers.Timer();
             _timer.Interval = CACHE_INTERVAL;
             _timer.AutoReset = true;
@@ -25,7 +24,7 @@ namespace VNET.Library.ConfigManager
 
         public void StartConfigCache()
         {
-            _configManager.FillConfigValues();
+            FillConfigValues();
 
             _timer.Elapsed += _timer_Elapsed;
             _timer.Enabled = true;
@@ -34,7 +33,19 @@ namespace VNET.Library.ConfigManager
 
         void _timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            _configManager.FillConfigValues();
+            FillConfigValues();
         }
+
+        public void SetConfigValuesToCache(ConfigCollection configCollection)
+        {
+            _configCollection = configCollection;
+        }
+
+        public string GetValue(string key)
+        {
+            return _configCollection[key];
+        }
+
+        public abstract void FillConfigValues();
     }
 }

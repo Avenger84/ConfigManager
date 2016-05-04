@@ -9,7 +9,7 @@ using VNET.Library.Entities.CrmEntities;
 
 namespace VNET.Library.ConfigManager
 {
-    public class RegConfigManager : IConfigManager
+    public class RegConfigManager : ConfigManager, IConfigManager
     {
         private string _registryName;
         private RegistryKey _baseKey = null;
@@ -20,16 +20,14 @@ namespace VNET.Library.ConfigManager
 
             _baseKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Wow6432Node\\" + _registryName, RegistryKeyPermissionCheck.ReadWriteSubTree, System.Security.AccessControl.RegistryRights.ReadKey);
 
-            ConfigCacheManager cacheManager = new ConfigCacheManager(this);
-
-            Task task = Task.Factory.StartNew(() => cacheManager.StartConfigCache());
+            Task task = Task.Factory.StartNew(() => base.StartConfigCache());
 
             task.Wait();
         }
 
         public string GetKeyValue(string key)
         {
-            return _baseKey.GetValue(key, string.Empty).ToString();
+            return base.GetValue(key);
         }
 
         ~RegConfigManager()
@@ -41,16 +39,11 @@ namespace VNET.Library.ConfigManager
         {
             get
             {
-                return GetKeyValue(key);
-            }
-            set
-            {
-                throw new NotImplementedException();
+                return base.GetValue(key);
             }
         }
 
-
-        public void FillConfigValues()
+        public override void FillConfigValues()
         {
             string[] valueNames = _baseKey.GetValueNames();
 
@@ -61,7 +54,7 @@ namespace VNET.Library.ConfigManager
                 configCollection.Add(new KeyValuePair<string, string>(name, _baseKey.GetValue(name, string.Empty).ToString()));
             }
 
-            ConfigValues.Instance.FillConfigValues(configCollection);
+            base.SetConfigValuesToCache(configCollection);
         }
     }
 }

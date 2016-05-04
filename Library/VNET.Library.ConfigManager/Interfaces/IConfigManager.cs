@@ -9,8 +9,8 @@ namespace VNET.Library.ConfigManager.Interfaces
     {
         string GetKeyValue(string key);
 
-        string this[string key] { get; set; }
+        string this[string key] { get; }
 
-        void FillConfigValues();
+        //void FillConfigValues();
     }
 }

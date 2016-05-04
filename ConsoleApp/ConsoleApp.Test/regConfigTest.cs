@@ -11,18 +11,18 @@ namespace ConsoleApp.Test
 {
     public class regConfigTest
     {
-        private IConfigManager _configManager;
+        private IConfigs _configs;
 
-        public regConfigTest()
+        public regConfigTest(IConfigs configs)
         {
-            //_configManager = configManager;
+            _configs = configs;
         }
 
         public void Process()
         {
             for (int i = 0; i < 1000; i++)
             {
-                Console.WriteLine("AdminName:{0}|{1}", Configs.AdminName, DateTime.Now.ToString("HH:mm ss"));
+                Console.WriteLine("AdminName:{0}|{1}", _configs.AdminName, DateTime.Now.ToString("HH:mm ss"));
                 Thread.Sleep(3000);
             }
         }

@@ -18,17 +18,21 @@ namespace ConsoleApp.Test
     {
         static void Main(string[] args)
         {
-            //IConfigManager _confManager = new RegConfigManager("sahibindenTest");
+            IConfigManager _confManager = new RegConfigManager("sahibindenTest");
 
             ISqlAccess sqlAccess = new SqlAccess("Data Source=192.168.*.**; Initial Catalog=***; User Id=****; Password=****;Max Pool Size = 10000;Pooling = True");
             ISqlEntityAccess sqlEntityAccess = new SqlEntityAccess(sqlAccess);
             IDBConfigDao configDao = new DBConfigDao(sqlEntityAccess);
 
-            IConfigManager _confManager = new DBConfigManager(configDao, "TEST");
+            //IConfigManager _confManager = new DBConfigManager(configDao, "TEST");
 
-            string qwe = Configs.DOMAIN_NAME;
-            regConfigTest regTest = new regConfigTest();
+            IConfigs configs = new Configs(_confManager);
 
+            string adminId = _confManager.GetKeyValue("AdminId");
+            string adminName = configs.AdminName;
+
+
+            regConfigTest regTest = new regConfigTest(configs);
             regTest.Process();
         }
     }
