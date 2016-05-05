@@ -37,10 +37,7 @@ namespace VNET.Library.ConfigManager
 
         public string this[string key]
         {
-            get
-            {
-                return base.GetValue(key);
-            }
+            get { return base.GetValue(key); }
         }
 
         public override void FillConfigValues()

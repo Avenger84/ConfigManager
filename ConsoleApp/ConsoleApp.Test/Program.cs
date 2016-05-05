@@ -19,14 +19,17 @@ namespace ConsoleApp.Test
     {
         static void Main(string[] args)
         {
-            string den = ConfigWrapper.Config.AdminId;
-            IConfigManager _confManager = new RegConfigManager("sahibindenTest");
+            //string den = ConfigWrapper.Config.AdminId;
 
-            ISqlAccess sqlAccess = new SqlAccess("Data Source=192.168.*.**; Initial Catalog=***; User Id=****; Password=****;Max Pool Size = 10000;Pooling = True");
+            //IConfigManager _confManager = new RegConfigManager("sahibindenTest");
+
+            ISqlAccess sqlAccess = new SqlAccess("Data Source=192.168.5.76; Initial Catalog=SSIS_DEST; User Id=CrmSqlUser; Password=Crm123;Max Pool Size = 10000;Pooling = True");
             ISqlEntityAccess sqlEntityAccess = new SqlEntityAccess(sqlAccess);
             IDBConfigDao configDao = new DBConfigDao(sqlEntityAccess);
 
             //IConfigManager _confManager = new DBConfigManager(configDao, "TEST");
+
+            IConfigManager _confManager = new AppSettingsConfigManager();
 
             IConfigs configs = new Configs(_confManager);
 
